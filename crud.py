@@ -99,6 +99,8 @@ def create_interaction(db: Session, interaction: schemas.InteractionCreate):
     
     operator = select_operator(db, interaction.source_id)
     operator_id = operator.id if operator else None
+
+    # TODO: need to understand how to handle operator_id=None case
     
     db_interaction = models.Interaction(
         lead_id=lead.id,
