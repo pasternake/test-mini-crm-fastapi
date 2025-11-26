@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import List, Optional
 from datetime import datetime
 
@@ -12,8 +12,7 @@ class OperatorCreate(OperatorBase):
 
 class Operator(OperatorBase):
     id: int
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 class SourceBase(BaseModel):
     name: str
@@ -23,8 +22,7 @@ class SourceCreate(SourceBase):
 
 class Source(SourceBase):
     id: int
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 class AllocationSet(BaseModel):
     operator_id: int
@@ -43,11 +41,9 @@ class Interaction(BaseModel):
     status: str
     created_at: datetime
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 class Lead(BaseModel):
     id: int
     identifier: str
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
